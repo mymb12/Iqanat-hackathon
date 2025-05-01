@@ -23,7 +23,7 @@ void setup() {
 }
 
 void loop() {
-  delay(1000);
+  delay(500);
   
   // Distance
   distance = ultrasonic.read();

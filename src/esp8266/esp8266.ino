@@ -1,12 +1,17 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(D7, D8);
+
 const char* ssid = "Wi-FI";
 const char* password = "01011966";
 const char* serverName = "http://192.168.0.25:11223/data";
 
 void setup() {
   Serial.begin(115200);
+  mySerial.begin(9600);
 
   WiFi.begin(ssid, password);
 
@@ -20,7 +25,9 @@ void setup() {
 
 void loop() {
   if (WiFi.status() == WL_CONNECTED) {
-    String line = Serial.readStringUntil('\n');
+    if(mySerial.available()) {
+    String line = mySerial.readStringUntil('\n');
+    
     float distance, temp;
     int water;
 
@@ -40,12 +47,15 @@ void loop() {
 
     Serial.print("HTTP Response code: ");
     Serial.println(httpResponseCode);
+    Serial.println(json);
+    Serial.println(line);
 
     http.end();
+    }
   } else {
     Serial.print("Failed connecting to WiFi: ");
     Serial.println(ssid);
   }
 
-  delay(5000);
+  delay(500);
 }
