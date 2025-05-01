@@ -1,0 +1,30 @@
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #00ffa1;
+}
+
+.card {
+  background: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.metric {
+  font-size: 1.5rem;
+  margin: 15px 0;
+}
+
+.label {
+  color: #aaa;
+  font-size: 1rem;
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Oil Monitor</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      async function fetchData() {
+        const res = await fetch("/data");
+        const data = await res.json();
+
+        document.getElementById("distance").textContent = data.distance + " cm";
+        document.getElementById("water").textContent = data.water;
+        document.getElementById("temp").textContent = data.temp + " °C";
+      }
+
+      setInterval(fetchData, 2000); // refresh every 2s
+      window.onload = fetchData;
+    </script>
+  </head>
+  <body>
+    <h1>Oil Pump Monitor</h1>
+    <div>Distance: <span id="distance">--</span></div>
+    <div>Water Level: <span id="water">--</span></div>
+    <div>Temperature: <span id="temp">--</span></div>
+  </body>
+</html>
